@@ -1,0 +1,264 @@
+[gd_scene load_steps=11 format=3 uid="uid://ds63t88heri05"]
+
+[ext_resource type="Texture2D" uid="uid://bo2esbgw84aei" path="res://Sprites/splashscreen.png" id="1_juhg0"]
+[ext_resource type="Script" uid="uid://0va6tr43t7ve" path="res://Scenes/start_menu.gd" id="1_m6uer"]
+[ext_resource type="FontFile" uid="uid://b6h4rg5sh365i" path="res://Sprites/Tiny5-Regular.ttf" id="2_jgtwh"]
+[ext_resource type="Texture2D" uid="uid://c452bdbfsb7dn" path="res://Sprites/Grabber.png" id="4_a43kq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jgtwh"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6uer"]
+bg_color = Color(0.321728, 0.321728, 0.321728, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a43kq"]
+bg_color = Color(0.0866667, 0.2, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.203922, 0.305882, 0.0784314, 0.6)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2i62"]
+bg_color = Color(0.144063, 0.144063, 0.144062, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_626he"]
+bg_color = Color(0.317647, 0.462745, 0.00784314, 1)
+draw_center = false
+border_width_top = 1
+border_width_right = 2
+border_width_bottom = 1
+border_color = Color(0.317647, 0.462745, 0.00784314, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8u0lp"]
+draw_center = false
+border_width_left = 6
+border_width_top = 3
+border_width_right = 6
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0.458824)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+anti_aliasing = false
+
+[node name="StartMenu" type="Control" node_paths=PackedStringArray("MainLabel", "MainSlider", "Audio")]
+clip_contents = true
+custom_minimum_size = Vector2(256, 224)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_m6uer")
+MainLabel = NodePath("AudioTab/MarginContainer/VBoxContainer/Main/HBoxContainer/Label2")
+MainSlider = NodePath("AudioTab/MarginContainer/VBoxContainer/Main/HBoxContainer/HSlider")
+Audio = NodePath("AudioTab")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_juhg0")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(115, 88)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -88.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jgtwh")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jgtwh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m6uer")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jgtwh")
+text = "start game"
+
+[node name="options" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jgtwh")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jgtwh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m6uer")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jgtwh")
+text = "options"
+
+[node name="quit" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jgtwh")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jgtwh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m6uer")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jgtwh")
+text = "quit
+"
+
+[node name="AudioTab" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 16.0
+offset_right = -19.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a43kq")
+
+[node name="MarginContainer" type="MarginContainer" parent="AudioTab"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AudioTab/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="AudioTab/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 19.95)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="AudioTab/MarginContainer/VBoxContainer/Control"]
+texture_filter = 1
+layout_mode = 2
+offset_top = 4.0
+offset_right = 201.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.821685, 0.918394, 0.821419, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.689667, 1, 0.02, 0.462745)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("2_jgtwh")
+text = "Audio"
+
+[node name="Button" type="Button" parent="AudioTab/MarginContainer/VBoxContainer/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -4.0
+offset_bottom = 4.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_jgtwh")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxFlat_i2i62")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_i2i62")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_i2i62")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_i2i62")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_i2i62")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_i2i62")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2i62")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_i2i62")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i2i62")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_i2i62")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i2i62")
+text = "X"
+
+[node name="HSeparator" type="HSeparator" parent="AudioTab/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Main" type="Control" parent="AudioTab/MarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(201, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AudioTab/MarginContainer/VBoxContainer/Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="AudioTab/MarginContainer/VBoxContainer/Main/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_jgtwh")
+text = "Main"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="VSeparator" type="VSeparator" parent="AudioTab/MarginContainer/VBoxContainer/Main/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_626he")
+
+[node name="HSlider" type="HSlider" parent="AudioTab/MarginContainer/VBoxContainer/Main/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(130, 16)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("4_a43kq")
+theme_override_icons/grabber_highlight = ExtResource("4_a43kq")
+theme_override_icons/grabber_disabled = ExtResource("4_a43kq")
+theme_override_styles/slider = SubResource("StyleBoxFlat_8u0lp")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_8u0lp")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_8u0lp")
+step = 2.0
+value = 50.0
+
+[node name="Label2" type="Label" parent="AudioTab/MarginContainer/VBoxContainer/Main/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jgtwh")
+theme_override_font_sizes/font_size = 8
+text = "50"
+
+[connection signal="button_down" from="Control/VBoxContainer/Start" to="." method="_start_game"]
+[connection signal="button_down" from="Control/VBoxContainer/options" to="." method="_open_options"]
+[connection signal="button_down" from="Control/VBoxContainer/quit" to="." method="_quit_game"]
+[connection signal="pressed" from="AudioTab/MarginContainer/VBoxContainer/Control/Button" to="." method="_exit"]
+[connection signal="value_changed" from="AudioTab/MarginContainer/VBoxContainer/Main/HBoxContainer/HSlider" to="." method="_main_change"]

@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=3 uid="uid://b1ahd3i8j2s5"]
+
+[ext_resource type="Script" uid="uid://qdd8xac04yjp" path="res://Nodes/Enemy/enemy.gd" id="1_ee5ic"]
+[ext_resource type="Texture2D" uid="uid://cfholugkoivxi" path="res://Sprites/Enemy1.png" id="2_mytoc"]
+[ext_resource type="Texture2D" uid="uid://4x03e738gmkr" path="res://Sprites/Enemy1_Animation.png" id="3_mytoc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ee5ic"]
+size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a24yq"]
+atlas = ExtResource("3_mytoc")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag5ju"]
+atlas = ExtResource("3_mytoc")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1t2h"]
+atlas = ExtResource("3_mytoc")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plypf"]
+atlas = ExtResource("3_mytoc")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7b5v"]
+atlas = ExtResource("3_mytoc")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukm7c"]
+atlas = ExtResource("3_mytoc")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsc67"]
+atlas = ExtResource("3_mytoc")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_858ri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mytoc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a24yq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag5ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1t2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plypf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7b5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukm7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsc67")
+}],
+"loop": false,
+"name": &"die",
+"speed": 30.0
+}]
+
+[node name="Enemy" type="Area2D" node_paths=PackedStringArray("Sprite", "Particles")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_ee5ic")
+Sprite = NodePath("AnimatedSprite2D")
+Particles = NodePath("CPUParticles2D")
+metadata/_custom_type_script = "uid://qdd8xac04yjp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ee5ic")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_858ri")
+animation = &"die"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 32
+lifetime = 0.2
+one_shot = true
+speed_scale = 0.2
+explosiveness = 0.79
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 183.57
+initial_velocity_max = 234.07
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+color = Color(0.984314, 0.94902, 0.211765, 1)

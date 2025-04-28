@@ -1,0 +1,194 @@
+[gd_scene load_steps=10 format=3 uid="uid://drb4278i047oh"]
+
+[ext_resource type="PackedScene" uid="uid://cwo5vpavnjsve" path="res://Nodes/Player/player.tscn" id="1_b6fju"]
+[ext_resource type="Texture2D" uid="uid://blmgiaiara7w4" path="res://Sprites/gamescreen.png" id="1_fiftr"]
+[ext_resource type="Script" uid="uid://c8dksygb80vcp" path="res://enemy_controller.gd" id="2_6h5vk"]
+[ext_resource type="Script" uid="uid://y1ikrrc34msm" path="res://Scenes/area_2d.gd" id="3_6h5vk"]
+[ext_resource type="FontFile" uid="uid://b6h4rg5sh365i" path="res://Sprites/Tiny5-Regular.ttf" id="5_1ixah"]
+[ext_resource type="Script" uid="uid://u32027tbupqk" path="res://Scenes/control.gd" id="5_rgj8m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fiftr"]
+size = Vector2(299, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgj8m"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fmhe"]
+bg_color = Color(0.0164828, 0.049645, 0.0143651, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[node name="GameScene" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(128, 112)
+texture = ExtResource("1_fiftr")
+
+[node name="BulletDeleter" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_6h5vk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletDeleter"]
+position = Vector2(129.5, -14)
+shape = SubResource("RectangleShape2D_fiftr")
+
+[node name="Player" parent="." instance=ExtResource("1_b6fju")]
+position = Vector2(128, 180)
+
+[node name="EnemyController" type="Node2D" parent="."]
+script = ExtResource("2_6h5vk")
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("scoreLabel", "WinScreen", "main")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 205.0
+offset_right = 255.0
+offset_bottom = 223.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_rgj8m")
+scoreLabel = NodePath("Label")
+WinScreen = NodePath("WinScreen")
+main = NodePath("..")
+
+[node name="Label" type="Label" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("5_1ixah")
+theme_override_font_sizes/font_size = 8
+text = "score:68"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="WinScreen" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -205.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/WinScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.247059, 0, 0.415686)
+
+[node name="Label" type="Label" parent="Control/WinScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -43.1667
+offset_right = 32.0
+offset_bottom = -20.8333
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_1ixah")
+text = "YOU WON"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/WinScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 12.8333
+offset_right = 32.0
+offset_bottom = 35.1667
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_1ixah")
+theme_override_font_sizes/font_size = 8
+text = "score:68"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Retry" type="Button" parent="Control/WinScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -13.0
+offset_right = -9.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_1ixah")
+theme_override_styles/focus = SubResource("StyleBoxFlat_rgj8m")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2fmhe")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2fmhe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rgj8m")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2fmhe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_rgj8m")
+text = "Retry"
+
+[node name="Menu" type="Button" parent="Control/WinScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -13.0
+offset_right = 55.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_1ixah")
+theme_override_styles/focus = SubResource("StyleBoxFlat_rgj8m")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2fmhe")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2fmhe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rgj8m")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2fmhe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_rgj8m")
+text = "Menu"
+
+[connection signal="button_down" from="Control/WinScreen/Retry" to="Control" method="_on_retry"]
+[connection signal="button_down" from="Control/WinScreen/Menu" to="Control" method="_on_menu"]

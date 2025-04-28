@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwo5vpavnjsve"]
+
+[ext_resource type="Texture2D" uid="uid://bl7uy0k3ybo3o" path="res://Sprites/Player.png" id="1_65o2i"]
+[ext_resource type="Script" uid="uid://cmqm3fx8k1hls" path="res://Nodes/Player/player.gd" id="1_us8wf"]
+[ext_resource type="AudioStream" uid="uid://bo3l6gmpd0wtx" path="res://Sounds/click.wav" id="3_lkjqq"]
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("spawnpoint")]
+script = ExtResource("1_us8wf")
+spawnpoint = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_65o2i")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lkjqq")
+volume_db = -42.845

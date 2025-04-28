@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://drb4278i047oh"]
+
+[ext_resource type="PackedScene" uid="uid://cwo5vpavnjsve" path="res://Nodes/Player/player.tscn" id="1_b6fju"]
+[ext_resource type="Script" uid="uid://c8dksygb80vcp" path="res://enemy_controller.gd" id="2_6h5vk"]
+
+[node name="GameScene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_b6fju")]
+position = Vector2(128, 190)
+
+[node name="EnemyController" type="Node2D" parent="."]
+script = ExtResource("2_6h5vk")
