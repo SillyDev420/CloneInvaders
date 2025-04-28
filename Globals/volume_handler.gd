@@ -16,7 +16,6 @@ func play_sound(sound:String):
 	
 	var db_vol = lerp(-30.0, 0.0, vol_Main / 100.0) # <- notice the .0
 	new_Player.volume_db = db_vol
-	print(db_vol)
 	
 	if sound=="ui":
 		new_Player.stream = UISound
